@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4977222958614903697}
   - component: {fileID: 4977222958614903702}
   - component: {fileID: 4977222958614903703}
-  - component: {fileID: 1868522621}
+  - component: {fileID: 834565543}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -135,9 +135,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   powerScale: 5
-  spinScale: 0.06
---- !u!120 &1868522621
-LineRenderer:
+  spinScale: 0.1
+  plot: []
+--- !u!96 &834565543
+TrailRenderer:
+  serializedVersion: 2
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -175,9 +177,7 @@ LineRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Positions:
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 1}
+  m_Time: 5
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 1
@@ -186,7 +186,7 @@ LineRenderer:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 1
+        value: 0.19298172
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -231,5 +231,6 @@ LineRenderer:
     textureMode: 0
     shadowBias: 0.5
     generateLightingData: 0
-  m_UseWorldSpace: 1
-  m_Loop: 0
+  m_MinVertexDistance: 0.1
+  m_Autodestruct: 0
+  m_Emitting: 1

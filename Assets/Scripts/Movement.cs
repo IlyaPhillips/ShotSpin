@@ -17,6 +17,7 @@ public class Movement : MonoBehaviour
     private Vector2 shot;
     private Vector2 spin;
     private int shotCount;
+    public Vector3 [] plot;
     
     void Start()
     {
@@ -34,21 +35,25 @@ public class Movement : MonoBehaviour
         }
     }
 
-    private void DrawLine() {
+    public void DrawLine(int shot) {
         LineRenderer nextShot = GetComponent<LineRenderer>();
-        if (shotCount + 1 < shotList.Count) {
-            Vector3 line = shotList[shotCount + 1];
-            Vector3 lineDelta = spinList[shotCount + 1];
-            Vector3 [] linePlot = new Vector3 [4];
-            float time = 10;
+        nextShot.useWorldSpace = false;
+        //if (shotCount + 1 < shotList.Count) {
+            Vector3 line = shotList[shot + 1];
+            Vector3 lineDelta = spinList[shot + 1];
+            Vector3 [] linePlot = new Vector3 [15];
+            float time = 1;
+            Vector2 tempVel = (Vector2)line * line.z;
+            Vector2 tempAcc = (Vector2)lineDelta* lineDelta.z * spinScale;
             for (int i = 0; i < linePlot.Length; i++) {
-                Vector2 temp = (Vector2)line*line.z;
-                temp += (Vector2)lineDelta * time * i*lineDelta.z;
+                float timeIt = time * i;
+                Vector2 temp = new Vector2(tempVel.x*timeIt + (tempAcc.x*timeIt*timeIt), tempVel.y*timeIt + ( tempAcc.y * timeIt*timeIt));
+                
                 linePlot[i] = temp;
-                print(linePlot[i]);
             }
+            plot = linePlot;
             nextShot.SetPositions(linePlot);
-        }
+        //}
     }
 
     private void NewShot()
@@ -78,7 +83,7 @@ public class Movement : MonoBehaviour
         spinPower = spinList[shotCount].z * spinScale;
         spin *= spinPower * powerScale;
         rb.velocity = shot;
-        DrawLine();
+        DrawLine(shotCount);
     }
 }
 

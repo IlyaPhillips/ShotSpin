@@ -30,5 +30,6 @@ public class Launch : MonoBehaviour
         spinList = input.GetComponent<ShotEntry>().getSpinList();
         player.GetComponent<Movement>().SetShot(shotList);
         player.GetComponent<Movement>().SetSpin(spinList);
+        player.GetComponent<Movement>().DrawLine(-1);
     }
 }
